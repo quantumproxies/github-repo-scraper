@@ -1,0 +1,73 @@
+{
+ "cli": "github-repo-scraper",
+ "name": "GitHub Repository Search",
+ "version": "0.1.0",
+ "description": "GitHub repository search for Python and the command line: repositories for any query in GitHub search syntax, sorted by best match, stars or last update, with owner, description, language, stars, forks, topics, license and dates, as JSON or CSV. Free and open source; no GitHub token needed, sign in with your QuanticData account.",
+ "links": {
+  "repo": "https://github.com/quantumproxies/github-repo-scraper",
+  "page": "https://quanticdata.io/collectors/github-repository-search-api/?utm_source=github&utm_medium=cli&utm_campaign=github-repo-scraper",
+  "billing": "https://app.quanticdata.io/billing?utm_source=github&utm_medium=cli&utm_campaign=github-repo-scraper",
+  "pricing": "https://quanticdata.io/pricing/?utm_source=github&utm_medium=cli&utm_campaign=github-repo-scraper"
+ },
+ "commands": [
+  {
+   "name": "search",
+   "collector": "github_repos",
+   "method": "search",
+   "help": "GitHub repository search results for a query",
+   "description": "GitHub repository search for a query, in GitHub's search syntax: owner, name, description, language, stars, forks, open issues, topics, license, homepage and dates of each repository.",
+   "positional": "query",
+   "positional_is_list": false,
+   "positional_optional": false,
+   "columns": [
+    "rank",
+    "repo",
+    "language",
+    "stars",
+    "forks",
+    "updated_at",
+    "description"
+   ],
+   "sample": "github_repos",
+   "inputs": [
+    {
+     "name": "query",
+     "type": "string",
+     "required": true,
+     "description": "What to search, in GitHub's search syntax, e.g. \"http client language:python\" or \"static site generator language:go stars:>500\".",
+     "arg": "query"
+    },
+    {
+     "name": "sort",
+     "type": "string",
+     "required": false,
+     "description": "best_match (the default), stars or updated.",
+     "enum": [
+      "best_match",
+      "stars",
+      "updated"
+     ],
+     "default": "best_match",
+     "arg": "sort"
+    },
+    {
+     "name": "country",
+     "type": "string",
+     "required": false,
+     "description": "Country to run the request from, as an ISO 3166-1 alpha-2 code (us, gb, de...).",
+     "arg": "country"
+    },
+    {
+     "name": "max_results",
+     "type": "integer",
+     "required": false,
+     "description": "How many repositories to deliver at most (1–50). You pay only for delivered repositories.",
+     "min": 1,
+     "max": 50,
+     "default": 20,
+     "arg": "max_results"
+    }
+   ]
+  }
+ ]
+}
